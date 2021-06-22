@@ -5,6 +5,8 @@
  */
 package Servidor;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -18,8 +20,8 @@ public class ServerForm extends javax.swing.JFrame {
     public ServerForm() {
         initComponents();
     }
-    
-    
+
+
     public void addMensaje(String msj){
         txaVuelos.append(msj+"\n");
     }
@@ -27,79 +29,58 @@ public class ServerForm extends javax.swing.JFrame {
         serverRef.vuelos.get(i).estado = msj;
     }
     public void puerta(vuelo v){
-        try {
-            serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
-            addMensajeColas();
-            txaPuerta.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros...");
-            addMensajeColas();
-            Thread.sleep(4000);
-            txaPuerta.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó");
-            serverRef.vuelos.get(v.id).estado = "Despegó";
-            addMensajeColas();
-            serverRef.puerta = false;
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ServerForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
+        addMensajeColas();
+        txaPuerta.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros..." + "\n");
+        addMensajeColas();
+        LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(4000));
+        txaPuerta.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó" + "\n");
+        serverRef.vuelos.get(v.id).estado = "Despegó";
+        addMensajeColas();
+        serverRef.puerta = false;
     }
     public void puerta1(vuelo v){
-        try {
-            serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
-            addMensajeColas();
-            txaPuerta1.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros...");
-            addMensajeColas();
-            Thread.sleep(4000);
-            txaPuerta1.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó");
-            serverRef.vuelos.get(v.id).estado = "Despegó";
-            addMensajeColas();
-            serverRef.puerta = false;
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ServerForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
+        addMensajeColas();
+        txaPuerta1.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros..." + "\n");
+        addMensajeColas();
+        LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(4000));
+        txaPuerta1.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó" + "\n");
+        serverRef.vuelos.get(v.id).estado = "Despegó";
+        addMensajeColas();
+        serverRef.puerta = false;
     }
     public void puerta2(vuelo v){
-        try {
-            serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
-            addMensajeColas();
-            txaPuerta2.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros...");
-            addMensajeColas();
-            Thread.sleep(4000);
-            txaPuerta2.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó");
-            serverRef.vuelos.get(v.id).estado = "Despegó";
-            addMensajeColas();
-            serverRef.puerta = false;
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ServerForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
+        addMensajeColas();
+        txaPuerta2.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros..." + "\n");
+        addMensajeColas();
+        LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(4000));
+        txaPuerta2.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó" + "\n");
+        serverRef.vuelos.get(v.id).estado = "Despegó";
+        addMensajeColas();
+        serverRef.puerta = false;
     }
     public void puerta3(vuelo v){
-        try {
-            serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
-            addMensajeColas();
-            txaPuerta3.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros...");
-            addMensajeColas();
-            Thread.sleep(4000);
-            txaPuerta3.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó");
-            serverRef.vuelos.get(v.id).estado = "Despegó";
-            addMensajeColas();
-            serverRef.puerta = false;
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ServerForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
+        addMensajeColas();
+        txaPuerta3.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros..." + "\n");
+        LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(4000));
+        txaPuerta3.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó" + "\n");
+        serverRef.vuelos.get(v.id).estado = "Despegó";
+        addMensajeColas();
+        serverRef.puerta = false;
     }
     public void puerta4(vuelo v){
-        try {
-            serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
-            addMensajeColas();
-            txaPuerta4.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros...");
-            addMensajeColas();
-            Thread.sleep(4000);
-            txaPuerta4.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó");
-            serverRef.vuelos.get(v.id).estado = "Despegó";
-            addMensajeColas();
-            serverRef.puerta = false;
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ServerForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        serverRef.vuelos.get(v.id).estado = "Esperando pasajeros...";
+        addMensajeColas();
+        txaPuerta4.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Esperando pasajeros..." + "\n");
+        addMensajeColas();
+        LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(4000));
+        txaPuerta4.append("Tipo: " + v.tipo + "  Retraso: " + v.tarde + "   Despegó" + "\n");
+        serverRef.vuelos.get(v.id).estado = "Despegó";
+        addMensajeColas();
+        serverRef.puerta = false;
     }
     public void addMensajeColas(){
         txaCola.setText("");
@@ -263,134 +244,119 @@ public class ServerForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(30, 30, 30)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel5)
-                                        .addGap(125, 125, 125)))
-                                .addGap(39, 39, 39))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(95, 95, 95)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(107, 107, 107)
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comPuerPis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comPista1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel9)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAbordar)
+                            .addComponent(jLabel10)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(111, 111, 111)
-                                .addComponent(jLabel3)
-                                .addGap(172, 172, 172)
-                                .addComponent(jLabel4))
+                                .addComponent(comPista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAterrizar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(107, 107, 107)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comPista1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(161, 161, 161)
-                                        .addComponent(jLabel2)))
+                                .addComponent(comPuerPis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(136, 136, 136)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(comPista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnAterrizar)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(76, 76, 76))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(57, 57, 57)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(890, Short.MAX_VALUE)))
+                                .addComponent(btnAbordar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(jLabel3)
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel4)
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jLabel2)
+                        .addGap(342, 342, 342)
+                        .addComponent(jLabel6)
+                        .addGap(302, 302, 302)
+                        .addComponent(jLabel1)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(comPista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAterrizar))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comPista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAterrizar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
                         .addComponent(comPista1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comPuerPis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAbordar))))
-                .addGap(56, 56, 56)
+                            .addComponent(btnAbordar))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel4)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane8))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(11, 11, 11)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
@@ -404,19 +370,14 @@ public class ServerForm extends javax.swing.JFrame {
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(550, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(204, 204, 204)))
+                .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAterrizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAterrizarActionPerformed
-        System.out.println();
+
         if (serverRef.cola.isEmpty()){
             JOptionPane.showMessageDialog(this, "No se espera que aterricen vuelos");
         }
@@ -449,7 +410,7 @@ public class ServerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAterrizarActionPerformed
 
     private void btnAbordarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbordarActionPerformed
-        if (comPista.getSelectedIndex() == 0){
+        if (comPista1.getSelectedIndex() == 0){
             if (serverRef.colaAG.isEmpty()){
                 JOptionPane.showMessageDialog(this, "La pista grande no tiene pendientes");
             }
@@ -477,7 +438,7 @@ public class ServerForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "La puerta esta ocupada");
             }
         }
-        if (comPista.getSelectedIndex() == 1){
+        if (comPista1.getSelectedIndex() == 1){
             if (serverRef.colaAM.isEmpty()){
                 JOptionPane.showMessageDialog(this, "La pista mediana no tiene pendientes");
             }
@@ -505,7 +466,7 @@ public class ServerForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "La puerta esta ocupada");
             }
         }
-        if (comPista.getSelectedIndex() == 2){
+        if (comPista1.getSelectedIndex() == 2){
             if (serverRef.colaAP.isEmpty()){
                 JOptionPane.showMessageDialog(this, "La pista pequeña no tiene pendientes");
             }

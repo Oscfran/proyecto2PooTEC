@@ -58,6 +58,8 @@ class ThreadServidor extends Thread{
                         int tipo = reader.readInt();
                         int tiempo = reader.readInt();
                         vuelo vl = new vuelo(tipo, tiempo, server.total);
+                        System.out.println(server.total);
+                        System.out.println(vl.id);
                         server.total += 1;
                         server.cola.add(vl);
                         server.vuelos.add(vl);

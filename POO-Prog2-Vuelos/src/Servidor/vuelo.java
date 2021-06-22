@@ -32,7 +32,7 @@ public class vuelo{
         if (tiempo == 1){
             tarde = true;
         }
-        this.id = 0;
+        this.id = id;
         this.estado = "Por aterrizar";
     }
 }
